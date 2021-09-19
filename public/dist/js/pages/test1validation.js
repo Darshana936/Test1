@@ -4,14 +4,14 @@ $(document).ready(function () {
     radio_check();
   });
  
-  if( $("input[type='radio'][value='male']:checked")){
+  if( $("input[type='radio'][value='Male']:checked").length>0){
     radio_check();
 
   } 
 
   function radio_check() {
 
-    var y = $("input[type='radio'][value='male']:checked");
+    var y = $("input[type='radio'][value='Male']:checked");
     if (y.length > 0) {
       $("#ageForMale").css("display","");
       
@@ -32,7 +32,7 @@ $(document).ready(function () {
   $('#checkCity').hide();
   $('#checkGen').hide();
   $('#checkAge').hide();
-  $('#checkImg').hide();
+  $('#checkprofilePhoto').hide();
   $('#checkStatus').hide();
 
   $('#firstname').on("keyup change blur", function () {
@@ -167,7 +167,9 @@ function city_check() {
 }
 
 $("[name='gender']").change(function () {
+  
   gender_check();
+
 });
 
 function gender_check() {
@@ -188,6 +190,7 @@ function gender_check() {
 
 $("#age").on('blur change keyup',function () {
   age_check();
+
 });
 
  function age_check(){
@@ -200,12 +203,13 @@ $("#age").on('blur change keyup',function () {
     return false;
   }
 
-  else if (age_val < 0) {
+  else if (age_val <= 0) {
     $('#checkAge').show();
     $('#checkAge').html("Age must be greater than 0.");
     $('#age').css({ border: "1px solid red" });
     return false;
   }
+
   else {
     $('#checkAge').hide();
     $('#age').css({ border: "1px solid green" });
@@ -217,40 +221,35 @@ $("#age").on('blur change keyup',function () {
  }
  
 
- $('#profilePhoto').on('change', function () {
+ $('#profilePhoto').on('change click', function () {
   profilePhoto_check();
 });
 
-function profilePhoto_check() {
- 
+function profilePhoto_check() {  
   var ext = $('#profilePhoto').val().split('.').pop().toLowerCase();
-  var profilePhoto_val = $('#profilePhoto').val();
-  //var maxfileSize = 1024 * 1024 ;
-  var size = $('#profilePhoto')[0].files[0].size/1024;
- 
-
-
-  if (profilePhoto_val.length == '') {
-    $('#checkImg').show();
-    $('#checkImg').html("Please upload image");
-    $('#profilePhoto').css({ border: "1px solid red" });
-    return false;
-  }
-  else if(size > 1024) {
-    $('#checkImg').show();
-    $('#checkImg').html("Try to upload file less than 1MB(1024 KB).");
+  
+    if ($("#profilePhoto")[0].files.length == 0) {
+      $('#checkprofilePhoto').show();
+      $('#checkprofilePhoto').html("Please upload image");
+      $('#profilePhoto').css({ border: "1px solid red" });
+      return false;
+    }
+    
+    else if(($('#profilePhoto')[0].files[0].size/1024) > 1024) {
+    $('#checkprofilePhoto').show();
+    $('#checkprofilePhoto').html("Try to upload file less than 1MB(1024 KB).");
     $('#profilePhoto').css({ border: "1px solid red" });
     return false;
 }
   else if($.inArray(ext, ['png', 'jpg']) == -1) {
-    $('#checkImg').show();
-    $('#checkImg').html("Invalid image format! Image format must be jpg or png.");
+    $('#checkprofilePhoto').show();
+    $('#checkprofilePhoto').html("Invalid image format! Image format must be jpg or png.");
     $('#profilePhoto').css({ border: "1px solid red" });
     return false;
   }
   
   else {
-    $('#checkImg').hide();
+    $('#checkprofilePhoto').hide();
     $('#profilePhoto').css({ border: "1px solid green" });
     return true;
   }
@@ -272,25 +271,26 @@ function status_check() {
     return true;
   }
 }
-$('#UserSubmit').click(function () {
+
+$('#UserSubmitBtn').click(function () {
   var v1 = firstname_check();
   var v2 = lastname_check();
   var v3 = email_check();
-
-  if( $("input[type='radio'][value='male']:checked").length>0){
-   var v4= age_check();
-   }
-   else{
-     v4=true;
-   }
-  var v5 = profilePhoto_check();
   var v6 = status_check();
   var v7= gender_check();
   var v8= city_check();
   var v9 = contactNumber_check();
-  return (v1 && v2 && v3 && v4  && v5 && v6 && v7 && v8 && v9);
+  if( $("input[type='radio'][value='Male']:checked").length>0){
+       var v4= age_check();
+   }
+   else{
+     v4=true;
+   }
+   var v5 = profilePhoto_check(); 
+  return (v1 && v2 && v3 && v4 && v5  && v6 && v7 && v8 && v9);
 
 });
+
 $('#EditProfilePhoto').on('change ', function () {
   
   EditProfilePhoto_check();
@@ -298,15 +298,13 @@ $('#EditProfilePhoto').on('change ', function () {
 });
 function EditProfilePhoto_check() {
   var ext = $('#EditProfilePhoto').val().split('.').pop().toLowerCase();
-  var size = $('#EditProfilePhoto')[0].files[0].size/1024;
-
   if ($.inArray(ext, ['png', 'jpg']) == -1) {
     $('#checkEditImg').show();
     $('#checkEditImg').html("Invalid image format! Image format must be jpg or png.");
     $('#EditProfilePhoto').css({ border: "1px solid red" });
     return false;
   }
-  else if(size > 1024) {
+  else if(($('#EditProfilePhoto')[0].files[0].size/1024) > 1024) {
     $('#checkEditImg').show();
     $('#checkEditImg').html("Try to upload file less than 1MB(1024 KB).");
     $('#EditProfilePhoto').css({ border: "1px solid red" });
@@ -325,18 +323,23 @@ $('#UserEditSubmit').click(function () {
   let s1 = firstname_check();
   let s2 = lastname_check();
   let s3 = email_check();
-  let s7= gender_check();
+ 
   let s8= city_check();
-  if( $("input[type='radio'][value='male']:checked").length>0){
+  if( $("input[type='radio'][value='Male']:checked").length>0){
     var s4= age_check();
     }
     else{
       s4=true;
     }
-  let s5 = EditProfilePhoto_check();
-  let s6 = status_check();
+    if($("#EditProfilePhoto")[0].files.length!=0){
+   var s5 = EditProfilePhoto_check();
+       }
+       else{
+         s5=true;
+       }
+
   let s9 = contactNumber_check();
-  return (s1 && s2 && s3 && s4 && s5 && s6 && s7 && s8 && s9);
+  return (s1 && s2 && s3 && s4 && s5  && s8 && s9);
 
 });
 

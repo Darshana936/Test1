@@ -48,12 +48,12 @@
 
                 <div class="form-group" style="height:75px;">
                     <label>Gender</label><br>
-                 <input type="radio" value="female" {{Request::old('gender')=='female' ? 'checked':''}} name="gender">
+                 <input type="radio" value="Female" {{Request::old('gender')=='Female' ? 'checked':''}} name="gender">
                   <label style="margin: 5px; font:inherit;"> Female</label>
 
-                   <input type="radio" value="male"  {{Request::old('gender')=='male' ? 'checked':''}} name="gender" >
+                   <input type="radio" value="Male"  {{Request::old('gender')=='Male' ? 'checked':''}} name="gender" >
                    <label style="margin: 5px; font:inherit;">Male</label>
-                   <input type="radio" value="other"  {{Request::old('gender')=='other' ? 'checked':''}} name="gender" >
+                   <input type="radio" value="Other"  {{Request::old('gender')=='Other' ? 'checked':''}} name="gender" >
                    <label style="margin: 5px; font:inherit;">Other</label><br>
                    <span style="color: red;">@error('gender'){{$message}}@enderror</span>
                    <span id="checkGen"></span>
@@ -71,23 +71,23 @@
        
                 <input type="file" name="profilePhoto" class="form-control" id="profilePhoto" >
                 <span style="color: red;">@error('profilePhoto'){{$message}}@enderror</span>
-                <span id="checkImg"></span>
+                <span id="checkprofilePhoto"></span>
             </div>     
                 <div class="form-group" style="height:75px;">
                     <label>Status</label><br>
-                 <input type="radio" value="active" {{Request::old('status')=='active' ? 'checked':''}} name="status" class="" >
+                 <input type="radio" value="Active" {{Request::old('status')=='Active' ? 'checked':''}} name="status" class="" >
                   <label style="margin: 5px; font:inherit;"> Active</label>
 
-                   <input type="radio" value="inactive"  {{Request::old('status')=='inactive' ? 'checked':''}} name="status" class="">
+                   <input type="radio" value="Inactive"  {{Request::old('status')=='Inactive' ? 'checked':''}} name="status" class="">
                    <label style="margin: 5px; font:inherit;">Inactive</label><br>
             <span style="color: red;">@error('status'){{$message}}@enderror</span>
             <span id="checkStatus"></span>
-                        </div>
+            </div>
                 
              
             <div class="card-footer">
-                  <a href="user-list" class="btn btn-secondary">Cancel</a>
-                  <button type="submit" class="btn btn-primary" id="UserSubmit">Submit</button>
+                  <a href="{{route('userlisted')}}" class="btn btn-secondary" >Cancel</a>
+                  <button type="submit" class="btn btn-primary" id="UserSubmitBtn">Submit</button>
                 </div>
         </form>
  

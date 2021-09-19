@@ -49,18 +49,18 @@
 
                 <div class="form-group" style="height:75px;">
                     <label>Gender</label><br>
-                 <input type="radio" value="female" name="gender" {{($data->gender=='female') ? 'checked' : ''}} >
+                 <input type="radio" value="Female" name="gender" {{($data->gender=='Female') ? 'checked' : ''}} >
                   <label style="margin: 5px; font:inherit;"> Female</label>
 
-                   <input type="radio" value="male"  {{($data->gender=='male') ? 'checked':''}} name="gender" >
+                   <input type="radio" value="Male"  {{($data->gender=='Male') ? 'checked':''}} name="gender" >
                    <label style="margin: 5px; font:inherit;">Male</label>
-                   <input type="radio" value="other"  {{($data->gender=='other') ? 'checked':''}} name="gender" >
+                   <input type="radio" value="Other"  {{($data->gender=='Other') ? 'checked':''}} name="gender" >
                    <label style="margin: 5px; font:inherit;">Other</label><br>
                    <span style="color: red;">@error('gender'){{$message}}@enderror</span>
                    <span id="checkGen"></span>
                 </div>
              
-                <div class="form-group" id="ageForMale" style="height:75px; display:none;">
+                <div class="form-group" id="ageForMale"  @if($data->gender!='Male') style="display:none;" @endif>
                     <label for="age">Age</label><br>
                     <input type="number" step="any" name="age" min="1" class="form-control" id="age" value="{{$data->age}}">
                 <span>@error('age'){{$message}}@enderror</span>
@@ -71,7 +71,7 @@
                 <label for="profilePhoto">Upload Profile Photo</label><br>
        
                 <input type="file" name="profilePhoto" class="form-control" id="EditProfilePhoto" >
-                <span>@error('age'){{$message}}@enderror</span>
+                <span>@error('profilePhoto'){{$message}}@enderror</span>
                 <span id="checkEditImg"></span>
             </div>  
             <div class="form-group">
@@ -79,10 +79,10 @@
             </div>
             <div class="form-group" style="height:75px;">
                     <label>Status</label><br>
-                  <input type="radio" value="active" {{ ($data->status =='active')? "checked" : "" }} name="status" ><label style="margin: 5px; font:inherit;"> Active</label> 
+                  <input type="radio" value="Active" {{ ($data->status =='Active')? "checked" : "" }} name="status" ><label style="margin: 5px; font:inherit;"> Active</label> 
 
 
-                   <input type="radio" value="inactive" {{ ($data->status =='inactive')? "checked" : "" }} name="status">
+                   <input type="radio" value="Inactive" {{ ($data->status =='Inactive')? "checked" : "" }} name="status">
                    <label style="margin: 5px; font:inherit;">Inactive</label>
                   <span style="color: red;">@error('status'){{$message}}@enderror</span>
                   <span id="checkRadio"></span>
@@ -93,7 +93,7 @@
                 
              
             <div class="card-footer">
-                  <a href="user-list" class="btn btn-secondary">Cancel</a>
+                  <a href="{{route('userlisted')}}" class="btn btn-secondary">Cancel</a>
                   <button type="submit" class="btn btn-primary" id="UserEditSubmit">Submit</button>
                 </div>
         </form>

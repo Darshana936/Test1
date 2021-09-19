@@ -26,7 +26,7 @@ class UserController extends Controller
             'contactNumber' => array("required","max:14","regex:$regex",'unique:users,contact_number'),
             'city' => 'required',
             'gender' => 'required',
-            'age' => "sometimes|nullable|required_if:gender,male|numeric|gt:0",
+            'age' => "sometimes|nullable|required_if:gender,Male|numeric|gt:0",
             'profilePhoto' => 'required|image|mimes:jpg,png|max:1024',
             'status' => 'required',
 
@@ -66,7 +66,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         
-        $users=User::paginate(8);
+        $users=User::paginate(7);
         return view('user.user-list',compact('users'));
     }
    
@@ -86,7 +86,7 @@ class UserController extends Controller
             'contactNumber' => array("required","max:14","regex:$regex",Rule::unique('users', 'contact_number')->ignore($req->id, 'id')),
             'city' => 'required',
             'gender' => 'required',
-            'age' => "sometimes|nullable|required_if:gender,male|numeric|gt:0",
+            'age' => "sometimes|nullable|required_if:gender,Male|numeric|gt:0",
             'profilePhoto' => 'image|mimes:jpg,png|max:1024',
             'status' => 'required',
     
