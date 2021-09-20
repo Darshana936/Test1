@@ -1,7 +1,7 @@
 
  @extends('layouts.master')
  @section('pagename','User List')
-
+ @section('header','User List')
  @section('content')
 
  <div class="card" style="
@@ -9,7 +9,7 @@
   white-space: nowrap;" >  
     <div class="card-header" >
        
-        <a href='user-add'>
+        <a href="{{route('user.add')}}">
     <button   class="btn btn-primary float-left" ><i class="fas fa-plus" ></i> Add User</button></a>
     </div>
 
@@ -53,9 +53,9 @@
                     <td> {{$user->created_at}} </td>
                     <td> {{$user->updated_at}} </td>
                     <td class="project-actions text-right">
-                    <a href="user-edit/{{$user->id}}" class="btn-info btn btn-sm" ><i class="fas fa-pencil-alt">
+                    <a href="{{route('user.edit',$user->id)}}" class="btn-info btn btn-sm" ><i class="fas fa-pencil-alt">
             </i>Edit</a>
-                    <a href="user-delete/{{$user->id}}" onclick="return confirm('Are you sure to delete this item?')" class="btn-danger btn btn-sm" ><i class="fas fa-trash"></i>Delete</a>
+                    <a href="{{route('user.delete',$user->id)}}" onclick="return confirm('Are you sure to delete this item?')" class="btn-danger btn btn-sm" ><i class="fas fa-trash"></i>Delete</a>
                     </td>
                     </tr>                
                 @endforeach

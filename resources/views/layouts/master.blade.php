@@ -46,9 +46,9 @@
       <div class="container-fluid">
         <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>User List</h1>
+          <h1>@yield('header')</h1>
           @if(Session::has('success'))
-        <div class="alert alert-success" >
+        <div class="text-success" style="border:1px solid green; padding:5px" >
             {{ Session::get('success') }}
             @php
                 Session::forget('success');

@@ -85,11 +85,10 @@ $(document).ready(function () {
   function email_check() {
     var email_val = $('#email').val();
     let regexpress = new RegExp("^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
-
+    var _token = $('input[name="_token"]').val();
     if (email_val.length == '') {
       $('#checkMail').show();
       $('#checkMail').html("Please fill the email field");
-
       $('#email').css({ border: "1px solid red" });
       return false;
     }
@@ -97,14 +96,12 @@ $(document).ready(function () {
       $('#checkMail').show();
       $('#checkMail').html("Invalid email address");
       $('#email').css({ border: "1px solid red" });
-
-      return false;
-
-    }
+      return false
+     }
     else {
       $('#checkMail').hide();
       $('#email').css({ border: '1px solid green' });
-      return true;
+      return true;      
     }
   }
 
@@ -234,20 +231,20 @@ function profilePhoto_check() {
       $('#profilePhoto').css({ border: "1px solid red" });
       return false;
     }
-    
-    else if(($('#profilePhoto')[0].files[0].size/1024) > 1024) {
-    $('#checkprofilePhoto').show();
-    $('#checkprofilePhoto').html("Try to upload file less than 1MB(1024 KB).");
-    $('#profilePhoto').css({ border: "1px solid red" });
-    return false;
-}
+  
   else if($.inArray(ext, ['png', 'jpg']) == -1) {
     $('#checkprofilePhoto').show();
     $('#checkprofilePhoto').html("Invalid image format! Image format must be jpg or png.");
     $('#profilePhoto').css({ border: "1px solid red" });
     return false;
   }
-  
+    
+  else if(($('#profilePhoto')[0].files[0].size/1024) > 1024) {
+    $('#checkprofilePhoto').show();
+    $('#checkprofilePhoto').html("Try to upload file less than 1MB(1024 KB).");
+    $('#profilePhoto').css({ border: "1px solid red" });
+    return false;
+}  
   else {
     $('#checkprofilePhoto').hide();
     $('#profilePhoto').css({ border: "1px solid green" });

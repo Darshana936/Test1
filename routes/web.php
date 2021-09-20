@@ -19,12 +19,11 @@ Route::get('/', function () {
 });
 Route::view('/dashboard','layouts.master');
 
-Route::get('user-add',[UserController::class,'create']);
-Route::post('user-add',[UserController::class,'store'])->name('useradded');
+Route::get('user/add',[UserController::class,'create']);
+Route::post('user/add',[UserController::class,'store'])->name('user.add');
+Route::get('user/list',[UserController::class,'show'])->name('user.list');
 
-Route::get('user-list',[UserController::class,'show'])->name('userlisted');
+Route::get('user/edit/{id}',[UserController::class,'edit'])->name('user.edit');
+Route::post('user/edit',[UserController::class,'update'])->name('user.update');
 
-Route::get('user-edit/{id}',[UserController::class,'edit']);
-Route::post('user-edit',[UserController::class,'update'])->name('user-edited');
-
-Route::get('user-delete/{id}',[UserController::class,'destroy']);
+Route::get('user.delete/{id}',[UserController::class,'destroy'])->name('user.delete');

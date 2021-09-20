@@ -8,7 +8,7 @@
  <div class="card-header">
         <h3 class="card-title">Add User</h3>
 </div>
-        <form method="POST" action="{{route('useradded')}}" enctype="multipart/form-data" >
+        <form method="POST" action="{{route('user.add')}}" enctype="multipart/form-data" >
             @csrf
             <div class="card-body">
                 <div class="form-group" style="height:75px;">
@@ -86,7 +86,7 @@
                 
              
             <div class="card-footer">
-                  <a href="{{route('userlisted')}}" class="btn btn-secondary" >Cancel</a>
+                  <a href="{{route('user.list')}}" class="btn btn-secondary" >Cancel</a>
                   <button type="submit" class="btn btn-primary" id="UserSubmitBtn">Submit</button>
                 </div>
         </form>

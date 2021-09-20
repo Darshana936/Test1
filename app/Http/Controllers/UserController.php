@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 class UserController extends Controller
@@ -14,6 +15,7 @@ class UserController extends Controller
     {
         return view('user.user-add');
     }
+  
 
     public function store(Request $req)
     {
@@ -60,7 +62,7 @@ class UserController extends Controller
             'status'=>$req->input('status'),
         
         ]);
-        return redirect('user-list')->with('success','User has been created successfully');
+        return redirect('user.list')->with('success','User has been created successfully');
     }
 
     public function show(User $user)
@@ -122,7 +124,7 @@ class UserController extends Controller
           $data->status= $req['status'];          
           $data->save();
 
-        return redirect('user-list')->with('success', 'User has been updated successfully.');
+        return redirect('user.list')->with('success', 'User has been updated successfully.');
     
     }
 

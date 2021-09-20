@@ -45,7 +45,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('userlisted')}}"  class="nav-link ">
+                <a href="{{route('user.list')}}"  class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User Management</p>
                 </a>
